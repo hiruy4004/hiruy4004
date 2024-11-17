@@ -262,6 +262,7 @@ h3 {
 /* Add modern gradient text */
 h1 {
     background: var(--gradient-1);
+    background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-size: 4rem;
