@@ -63,3 +63,14 @@ export default function Home({ entries }) {
     </div>
   );
 }
+
+function changeLanguage(lang) {
+  var googleTranslateElement = new google.translate.TranslateElement({
+      pageLanguage: 'en',
+      includedLanguages: 'am,en',
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+  }, 'google_translate_element');
+
+  googleTranslateElement.getInstance().setEnabled(true);
+  googleTranslateElement.getInstance().setLanguage(lang);
+}

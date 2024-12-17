@@ -7,9 +7,29 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                includedLanguages: 'es,en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
 <body>
     <header class="header">
+
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
         <div class="container">
             <div class="logo">
                 <i data-lucide="book-open" aria-hidden="true"></i>
@@ -19,13 +39,17 @@
                 <ul>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#pdf-gallery">PDF</a></li> <!-- New PDF button -->
                     <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdxVbJu5dM9DfXe8L1ggiFbqY_DutMp6d7UrwoihHWTX27btQ/viewform?usp=sf_link" target="_blank">Join Us</a></li>
+                    <li><a href="#about-us">About Us</a></li>
                 </ul>
             </nav>
         </div>
+        
     </header>
 
     <main>
+      
         <section class="hero">
             <div class="container">
                 <h1>Elevate Your Reading Experience</h1>
@@ -40,6 +64,13 @@
 
         <div class="separator"></div>
 
+        <section id="about-us" class="about-us">
+            <div class="container" id="about-us-section">
+                <h2>About Us</h2>
+                <p>The Book Lovers Association is dedicated to fostering a community of passionate readers. We aim to connect literature enthusiasts through curated reading lists, exclusive events, and engaging discussions. Join us to explore the world of books and share your love for reading with others.</p>
+                <p>Our mission is to promote literacy and a love for literature in our community. We believe that reading can transform lives, and we strive to create an inclusive environment where everyone can share their thoughts and experiences related to books.</p>
+            </div>
+        </section>
         <section id="features" class="features">
             <div class="container">
                 <h2>Why Join Our Association?</h2>
@@ -163,6 +194,9 @@
                 <a href="#">Terms of Service</a>
                 <a href="#">Contact Us</a>
             </div>
+            <button id="translate-button" onclick="changeLanguage('es')" title="Translate to Spanish" class="translate-button">
+                <i data-lucide="translate" aria-hidden="true"></i> Translate
+            </button>
         </div>
     </footer>
 
