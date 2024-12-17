@@ -639,3 +639,31 @@ body {
 .translate-button:hover {
     background: var(--color-primary-dark);
 }
+
+/* Make images responsive */
+img {
+    max-width: 100%; /* Ensures images do not exceed their container's width */
+    height: auto; /* Maintains aspect ratio */
+}
+
+/* Responsive container for sections */
+.container {
+    padding: 0 15px; /* Add some padding for smaller screens */
+}
+
+/* Adjust the layout for smaller screens */
+@media (max-width: 768px) {
+    .feature-grid, .testimonial-grid {
+        grid-template-columns: 1fr; /* Stack items on smaller screens */
+    }
+
+    .gallery, .pdf-list {
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Center items */
+    }
+
+    .gallery-item, .pdf-item {
+        width: 100%; /* Full width on smaller screens */
+        max-width: 300px; /* Limit max width */
+    }
+}
