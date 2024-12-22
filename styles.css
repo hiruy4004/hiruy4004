@@ -39,10 +39,11 @@ body {
     background: var(--glass-background);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--glass-border);
-    padding: 0.5rem 0;
+    padding: 1rem 0;
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .header .container {
@@ -54,7 +55,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: var(--color-primary);
     font-family: var(--font-heading);
@@ -75,19 +76,23 @@ nav ul {
 }
 
 nav ul li {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 nav ul li a {
     color: var(--color-text);
     text-decoration: none;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
     font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
 }
 
 nav ul li a:hover {
-    color: var(--color-primary);
+    color: var(--color-white);
+    background: var(--color-primary);
+    transform: translateY(-2px);
 }
 
 .hero {
@@ -674,5 +679,42 @@ img {
     .gallery-item, .pdf-item {
         width: 100%; /* Full width on smaller screens */
         max-width: 300px; /* Limit max width */
+    }
+}
+
+.contact-box {
+    background: var(--color-background );
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.contact-box h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.contact-box p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.contact-box a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-box a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* Show the contact box on mobile screens */
+@media (max-width: 767px) {
+    .contact-box {
+        display: block; /* Show on mobile */
     }
 }
