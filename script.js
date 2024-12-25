@@ -19,23 +19,22 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add scroll behavior for nav
     let lastScroll = 0;
     const header = document.querySelector('.header');
-    const mobileBreakpoint = 768; // Match your CSS media query
+    const nav = document.querySelector('nav');
 
     window.addEventListener('scroll', () => {
-        // Only apply this behavior on mobile
-        if (window.innerWidth <= mobileBreakpoint) {
-            const currentScroll = window.pageYOffset;
-            
-            // Scrolling down & past the header height
-            if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
-                header.classList.add('nav-hidden');
-            } else {
-                // Scrolling up
-                header.classList.remove('nav-hidden');
-            }
-            
-            lastScroll = currentScroll;
+        const currentScroll = window.pageYOffset;
+        
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scrolling down
+            header.classList.add('nav-hidden');
+            nav.style.transform = 'translateY(-100%)';
+        } else {
+            // Scrolling up
+            header.classList.remove('nav-hidden');
+            nav.style.transform = 'translateY(0)';
         }
+        
+        lastScroll = currentScroll;
     });
 });
 
