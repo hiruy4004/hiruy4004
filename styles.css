@@ -684,11 +684,7 @@ img {
 
 .contact-box {
     background: var(--color-background );
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     margin-top: 1rem;
-    text-align: left;
 }
 
 .contact-box h3 {
