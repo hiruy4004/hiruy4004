@@ -96,3 +96,20 @@ function changeLanguage(lang) {
   googleTranslateElement.getInstance().setEnabled(true);
   googleTranslateElement.getInstance().setLanguage(lang);
 }
+
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    const header = document.querySelector('.header');
+    
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        // Scrolling down
+        header.classList.add('nav-hidden');
+    } else {
+        // Scrolling up
+        header.classList.remove('nav-hidden');
+    }
+    
+    lastScroll = currentScroll;
+});
