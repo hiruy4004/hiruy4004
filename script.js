@@ -15,6 +15,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize icons (replace with your preferred icon library initialization)
     initializeIcons();
+
+    // Add scroll behavior for nav
+    let lastScroll = 0;
+    const header = document.querySelector('.header');
+    const mobileBreakpoint = 768; // Match your CSS media query
+
+    window.addEventListener('scroll', () => {
+        // Only apply this behavior on mobile
+        if (window.innerWidth <= mobileBreakpoint) {
+            const currentScroll = window.pageYOffset;
+            
+            // Scrolling down & past the header height
+            if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
+                header.classList.add('nav-hidden');
+            } else {
+                // Scrolling up
+                header.classList.remove('nav-hidden');
+            }
+            
+            lastScroll = currentScroll;
+        }
+    });
 });
 
 // Function to handle registration
