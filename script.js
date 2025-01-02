@@ -37,6 +37,54 @@ document.addEventListener('DOMContentLoaded', function() {
             lastScroll = currentScroll;
         }
     });
+
+    // Initialize arrow functionality
+    const navList = document.querySelector('.main-nav ul');
+    const leftArrow = document.querySelector('.nav-arrow.left');
+    const rightArrow = document.querySelector('.nav-arrow.right');
+
+    function scrollNav(direction) {
+        const scrollAmount = 200; // Increased scroll amount
+        
+        if (direction === 'left') {
+            navList.scrollLeft -= scrollAmount;
+        } else {
+            navList.scrollLeft += scrollAmount;
+        }
+        
+        // Update arrow visibility after scrolling
+        setTimeout(updateArrowVisibility, 100);
+    }
+
+    function updateArrowVisibility() {
+        // Show/hide left arrow
+        if (navList.scrollLeft <= 0) {
+            leftArrow.classList.add('hidden');
+        } else {
+            leftArrow.classList.remove('hidden');
+        }
+
+        // Show/hide right arrow
+        if (navList.scrollLeft >= navList.scrollWidth - navList.clientWidth - 5) {
+            rightArrow.classList.add('hidden');
+        } else {
+            rightArrow.classList.remove('hidden');
+        }
+    }
+
+    // Add click event listeners to arrows
+    if (leftArrow) {
+        leftArrow.addEventListener('click', () => scrollNav('left'));
+    }
+    if (rightArrow) {
+        rightArrow.addEventListener('click', () => scrollNav('right'));
+    }
+
+    // Add scroll event listener
+    navList.addEventListener('scroll', updateArrowVisibility);
+
+    // Initial visibility check
+    updateArrowVisibility();
 });
 
 // Function to handle registration
@@ -113,3 +161,49 @@ window.addEventListener('scroll', () => {
     
     lastScroll = currentScroll;
 });
+
+function scrollNav(direction) {
+    const navList = document.querySelector('.main-nav ul');
+    const scrollAmount = 100; // Adjust this value as needed
+    
+    if (direction === 'left') {
+        navList.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    } else {
+        navList.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+
+    // Update arrow visibility
+    updateArrowVisibility();
+}
+
+function updateArrowVisibility() {
+    const navList = document.querySelector('.main-nav ul');
+    const leftArrow = document.querySelector('.nav-arrow.left');
+    const rightArrow = document.querySelector('.nav-arrow.right');
+
+    // Show/hide left arrow
+    if (navList.scrollLeft <= 0) {
+        leftArrow.classList.add('hidden');
+    } else {
+        leftArrow.classList.remove('hidden');
+    }
+
+    // Show/hide right arrow
+    if (navList.scrollLeft >= navList.scrollWidth - navList.clientWidth) {
+        rightArrow.classList.add('hidden');
+    } else {
+        rightArrow.classList.remove('hidden');
+    }
+}
+
+// Add scroll event listener to update arrows
+document.querySelector('.main-nav ul').addEventListener('scroll', updateArrowVisibility);
+
+// Initial arrow visibility check
+document.addEventListener('DOMContentLoaded', updateArrowVisibility);

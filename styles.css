@@ -145,6 +145,14 @@ nav ul li a:hover {
     transform: translateY(-2px);
 }
 
+.nav-arrow.left {
+    display: none;
+}
+
+.nav-arrow.right {
+    display: none;
+}
+
 .hero {
     text-align: center;
     padding: 4rem 0;
@@ -949,6 +957,12 @@ main {
     .header {
         padding: 0.5rem 0;
     }
+    .nav-arrow.left {
+        display: block;
+    }
+    .nav-arrow.right {
+        display: block;
+    }
 
     .header .container {
         padding: 0.5rem 0;
@@ -956,25 +970,65 @@ main {
 
     nav ul {
         display: flex;
-        flex-direction: row; /* Make items horizontal */
-        flex-wrap: nowrap; /* Prevent wrapping */
-        overflow-x: auto; /* Allow horizontal scrolling if needed */
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         gap: 0.3rem;
         padding: 0.5rem;
-        justify-content: flex-start; /* Align items to the start */
+        justify-content: flex-start;
         width: 100%;
+        position: relative;
+        mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 5%,
+            black 95%,
+            transparent
+        );
+        -webkit-mask-image: linear-gradient(
+            to right,
+            transparent,
+            black 5%,
+            black 95%,
+            transparent
+        );
+    }
+
+    nav ul::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        background: linear-gradient(
+            to right,
+            transparent,
+            rgba(0, 0, 0, 0.1) 50%
+        );
+        pointer-events: none;
+    }
+
+    @keyframes slideHint {
+        0% { transform: translateX(0); }
+        10% { transform: translateX(-20px); }
+        20% { transform: translateX(0); }
+    }
+
+    nav ul {
+        animation: slideHint 2s ease-in-out 1s;
     }
 
     nav ul li {
-        flex: 0 0 auto; /* Prevent items from shrinking */
+        flex: 0 0 auto;
         margin: 0 0.2rem;
     }
 
     nav ul li a {
         font-size: 0.9rem;
         padding: 0.3rem 0.8rem;
-        white-space: nowrap; /* Prevent text wrapping */
+        white-space: nowrap;
     }
 
     .logo {
@@ -998,7 +1052,6 @@ main {
         width: 100%;
     }
 
-    /* Hide scrollbar but keep functionality */
     nav ul::-webkit-scrollbar {
         display: none;
     }
@@ -1010,5 +1063,54 @@ main {
 
     .hero {
         padding-top: 8rem;
+    }
+
+    .main-nav {
+        position: relative;
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+
+    .nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 30px;
+        height: 30px;
+        background: rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        cursor: pointer;
+        z-index: 2;
+        border: none;
+        transition: opacity 0.3s ease;
+    }
+
+    .nav-arrow.left {
+        display: block;
+        left: 5px;
+    }
+
+    .nav-arrow.right {
+        display: block;
+        right: 5px;
+    }
+
+    .nav-arrow:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hide arrows when not needed */
+    .nav-arrow.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    nav ul {
+        scroll-behavior: smooth;
+        padding: 0 35px;
     }
 }
