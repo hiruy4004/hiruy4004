@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
     function scrollNav(direction) {
         const scrollAmount = 200; // Increased scroll amount
         
-        if (direction === 'left') {
-            navList.scrollLeft -= scrollAmount;
+        if (direction === 'right') {
+            navList.scrollRight += scrollAmount;
         } else {
-            navList.scrollLeft += scrollAmount;
+            navList.scrollRight -= scrollAmount;
         }
         
         // Update arrow visibility after scrolling
@@ -58,7 +58,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateArrowVisibility() {
         // Show/hide left arrow
-        if (navList.scrollLeft <= 0) {
+        const scrollPosition = navList.scrollLeft;
+        const isAtStart = scrollPosition <= 0;
+        
+        if (isAtStart) {
             leftArrow.classList.add('hidden');
         } else {
             leftArrow.classList.remove('hidden');
