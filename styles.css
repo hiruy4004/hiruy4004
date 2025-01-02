@@ -943,3 +943,72 @@ main {
         transform: translateY(-2px);
     }
 }
+
+/* Mobile navigation adjustments */
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 0.5rem 0;
+    }
+
+    .header .container {
+        padding: 0.5rem 0;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: row; /* Make items horizontal */
+        flex-wrap: nowrap; /* Prevent wrapping */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
+        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        gap: 0.3rem;
+        padding: 0.5rem;
+        justify-content: flex-start; /* Align items to the start */
+        width: 100%;
+    }
+
+    nav ul li {
+        flex: 0 0 auto; /* Prevent items from shrinking */
+        margin: 0 0.2rem;
+    }
+
+    nav ul li a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
+        white-space: nowrap; /* Prevent text wrapping */
+    }
+
+    .logo {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .logo svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .logoa, .logob {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
+        top: 0.5rem;
+    }
+
+    .main-nav {
+        margin-top: 0.5rem;
+        width: 100%;
+    }
+
+    /* Hide scrollbar but keep functionality */
+    nav ul::-webkit-scrollbar {
+        display: none;
+    }
+    
+    nav ul {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    .hero {
+        padding-top: 8rem;
+    }
+}
