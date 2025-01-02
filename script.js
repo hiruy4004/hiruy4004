@@ -2,54 +2,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set current year in footer
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
-
-    // Initialize icons (replace with your preferred icon library initialization)
-    initializeIcons();
-
-    // Add scroll behavior for nav
-    let lastScroll = 0;
-    const header = document.querySelector('.header');
-    const mobileBreakpoint = 768; // Match your CSS media query
-
-    window.addEventListener('scroll', () => {
-        // Only apply this behavior on mobile
-        if (window.innerWidth <= mobileBreakpoint) {
-            const currentScroll = window.pageYOffset;
-            
-            // Scrolling down & past the header height
-            if (currentScroll > lastScroll && currentScroll > header.offsetHeight) {
-                header.classList.add('nav-hidden');
-            } else {
-                // Scrolling up
-                header.classList.remove('nav-hidden');
-            }
-            
-            lastScroll = currentScroll;
-        }
-    });
+    // Initialize icons
+    lucide.createIcons();
 
     // Initialize arrow functionality
     const navList = document.querySelector('.main-nav ul');
     const leftArrow = document.querySelector('.nav-arrow.left');
     const rightArrow = document.querySelector('.nav-arrow.right');
 
+    // Add initial animation class
+    navList.classList.add('scroll-hint');
+
     function scrollNav(direction) {
-        const scrollAmount = 200; // Increased scroll amount
+        const scrollAmount = 200;
         
-        if (direction === 'right') {
-            navList.scrollRight += scrollAmount;
+        // Remove the initial animation class if it exists
+        navList.classList.remove('scroll-hint');
+        
+        if (direction === 'left') {
+            navList.scrollBy({
+                left: -scrollAmount,
+                behavior: 'smooth'
+            });
         } else {
-            navList.scrollRight -= scrollAmount;
+            navList.scrollBy({
+                left: scrollAmount,
+                behavior: 'smooth'
+            });
         }
         
         // Update arrow visibility after scrolling
@@ -58,30 +37,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateArrowVisibility() {
         // Show/hide left arrow
-        const scrollPosition = navList.scrollLeft;
-        const isAtStart = scrollPosition <= 0;
-        
-        if (isAtStart) {
-            leftArrow.classList.add('hidden');
-        } else {
-            leftArrow.classList.remove('hidden');
-        }
+        const isAtStart = navList.scrollLeft <= 0;
+        leftArrow.style.display = isAtStart ? 'none' : 'flex';
 
         // Show/hide right arrow
-        if (navList.scrollLeft >= navList.scrollWidth - navList.clientWidth - 5) {
-            rightArrow.classList.add('hidden');
-        } else {
-            rightArrow.classList.remove('hidden');
-        }
+        const isAtEnd = navList.scrollLeft >= navList.scrollWidth - navList.clientWidth - 5;
+        rightArrow.style.display = isAtEnd ? 'none' : 'flex';
     }
 
     // Add click event listeners to arrows
-    if (leftArrow) {
-        leftArrow.addEventListener('click', () => scrollNav('left'));
-    }
-    if (rightArrow) {
-        rightArrow.addEventListener('click', () => scrollNav('right'));
-    }
+    leftArrow.addEventListener('click', () => scrollNav('left'));
+    rightArrow.addEventListener('click', () => scrollNav('right'));
 
     // Add scroll event listener
     navList.addEventListener('scroll', updateArrowVisibility);
