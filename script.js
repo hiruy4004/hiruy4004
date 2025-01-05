@@ -140,8 +140,8 @@ function toggleLanguage() {
                 features: "Features",
                 pdf: "PDF",
                 testimonials: "Testimonials",
-                aboutUs: "About Us",
                 images: "Images"
+                aboutUs: "About Us",
             },
             contactButton: "Contact Us",
             hero: {
@@ -211,8 +211,8 @@ function toggleLanguage() {
                 features: "ባህሪያት",
                 pdf: "ፒዲኤፍ",
                 testimonials: "ምስክርነቶች",
-                aboutUs: "ስለ እኛ",
-                images: "ምስሎች"
+                images: "ምስሎች",
+                aboutUs: "ስለ እኛ"
             },
             contactButton: "አግኙን",
             hero: {
