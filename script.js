@@ -117,13 +117,6 @@ function updateArrowVisibility() {
         rightArrow.classList.remove('hidden');
     }
 }
-
-// Add scroll event listener to update arrows
-document.querySelector('.main-nav ul').addEventListener('scroll', updateArrowVisibility);
-
-// Initial arrow visibility check
-document.addEventListener('DOMContentLoaded', updateArrowVisibility);
-
 let isAmharic = false;
 
 function toggleLanguage() {
