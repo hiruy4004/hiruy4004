@@ -404,6 +404,7 @@ h1 {
 }
 
 .cta-button {
+    cursor: pointer;
     background: var(--gradient-1);
     border: none;
     padding: 1rem 2rem;
@@ -949,6 +950,26 @@ main {
         color: var(--color-white);
         background: var(--color-primary);
         transform: translateY(-2px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    nav ul {
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        box-sizing: border-box; /* Ensure padding is included in width */
+    }
+
+    /* Ensure container doesn't overflow */
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin: 0;
+        box-sizing: border-box;
     }
 }
 
@@ -5287,6 +5308,10 @@ h3 {
     }
 }
 
+.nav{
+    padding: 0.5rem;
+}
+
 /* Add modern gradient text */
 h1 {
     background: var(--gradient-1);
@@ -5831,6 +5856,7 @@ main {
     }
 
     nav ul {
+        
         gap: 0.5rem;
     }
 

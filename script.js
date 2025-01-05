@@ -1,59 +1,87 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+  let lastScroll = 0;
 
-    // Initialize icons
-    lucide.createIcons();
+  // Scroll handling
+  window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      const header = document.querySelector('.header');
+      
+      if (currentScroll > lastScroll && currentScroll > 100) {
+          // Scrolling down
+          header.classList.add('nav-hidden');
+      } else {
+          // Scrolling up
+          header.classList.remove('nav-hidden');
+      }
+      
+      lastScroll = currentScroll;
+  });
+  
+  // Force scroll to top on page load (keep only one instance)
+  window.scrollTo(0, 0);
+  
+  // Prevent automatic scroll to hash on page load (keep only one instance)
+  if (window.location.hash) {
+      setTimeout(function() {
+          window.scrollTo(0, 0);
+      }, 1);
+  }
 
-    // Initialize arrow functionality
-    const navList = document.querySelector('.main-nav ul');
-    const leftArrow = document.querySelector('.nav-arrow.left');
-    const rightArrow = document.querySelector('.nav-arrow.right');
+  // Set current year in footer
+  document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // Add initial animation class
-    navList.classList.add('scroll-hint');
+  // Initialize icons
+  lucide.createIcons();
 
-    function scrollNav(direction) {
-        const scrollAmount = 200;
-        
-        // Remove the initial animation class if it exists
-        navList.classList.remove('scroll-hint');
-        
-        if (direction === 'left') {
-            navList.scrollBy({
-                left: -scrollAmount,
-                behavior: 'smooth'
-            });
-        } else {
-            navList.scrollBy({
-                left: scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-        
-        // Update arrow visibility after scrolling
-        setTimeout(updateArrowVisibility, 100);
-    }
+  // Initialize arrow functionality
+  const navList = document.querySelector('.main-nav ul');
+  const leftArrow = document.querySelector('.nav-arrow.left');
+  const rightArrow = document.querySelector('.nav-arrow.right');
 
-    function updateArrowVisibility() {
-        // Show/hide left arrow
-        const isAtStart = navList.scrollLeft <= 0;
-        leftArrow.style.display = isAtStart ? 'none' : 'flex';
+  // Add initial animation class
+  navList.classList.add('scroll-hint');
 
-        // Show/hide right arrow
-        const isAtEnd = navList.scrollLeft >= navList.scrollWidth - navList.clientWidth - 5;
-        rightArrow.style.display = isAtEnd ? 'none' : 'flex';
-    }
+  function scrollNav(direction) {
+      const scrollAmount = 200;
+      
+      // Remove the initial animation class if it exists
+      navList.classList.remove('scroll-hint');
+      
+      if (direction === 'left') {
+          navList.scrollBy({
+              left: -scrollAmount,
+              behavior: 'smooth'
+          });
+      } else {
+          navList.scrollBy({
+              left: scrollAmount,
+              behavior: 'smooth'
+          });
+      }
+      
+      // Update arrow visibility after scrolling
+      setTimeout(updateArrowVisibility, 100);
+  }
 
-    // Add click event listeners to arrows
-    leftArrow.addEventListener('click', () => scrollNav('left'));
-    rightArrow.addEventListener('click', () => scrollNav('right'));
+  function updateArrowVisibility() {
+      // Show/hide left arrow
+      const isAtStart = navList.scrollLeft <= 0;
+      leftArrow.style.display = isAtStart ? 'none' : 'flex';
 
-    // Add scroll event listener
-    navList.addEventListener('scroll', updateArrowVisibility);
+      // Show/hide right arrow
+      const isAtEnd = navList.scrollLeft >= navList.scrollWidth - navList.clientWidth - 5;
+      rightArrow.style.display = isAtEnd ? 'none' : 'flex';
+  }
 
-    // Initial visibility check
-    updateArrowVisibility();
+  // Add click event listeners to arrows
+  leftArrow.addEventListener('click', () => scrollNav('left'));
+  rightArrow.addEventListener('click', () => scrollNav('right'));
+
+  // Add scroll event listener
+  navList.addEventListener('scroll', updateArrowVisibility);
+
+  // Initial visibility check
+  updateArrowVisibility();
 });
 
 // Function to handle registration
@@ -63,20 +91,6 @@ function registerNow() {
 
 let lastScroll = 0;
 
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    const header = document.querySelector('.header');
-    
-    if (currentScroll > lastScroll && currentScroll > 100) {
-        // Scrolling down
-        header.classList.add('nav-hidden');
-    } else {
-        // Scrolling up
-        header.classList.remove('nav-hidden');
-    }
-    
-    lastScroll = currentScroll;
-});
 
 function scrollNav(direction) {
     const navList = document.querySelector('.main-nav ul');
